@@ -2,7 +2,7 @@
 
 module DrbWebSocket
   # A protocol instance from DrbWebSocket::Protocol.open.
-  class Socket
+  class ServerSocket
     def initialize(uri, socket, config = {})
       @uri = uri
       @socket = socket

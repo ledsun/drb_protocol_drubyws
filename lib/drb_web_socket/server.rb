@@ -9,8 +9,10 @@ module DrbWebSocket
       @config = config
     end
 
+    # Accept a new connection to the server.
+    # Returns a protocol instance capable of communicating with the client.
     def accept
-      Socket.new(@uri, @socket, @config)
+      ServerSocket.new(@uri, @socket, @config)
     end
   end
 end
