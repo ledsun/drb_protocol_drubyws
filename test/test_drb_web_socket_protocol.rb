@@ -2,7 +2,7 @@
 
 class TestDrbWebSocketProtocol < Minitest::Test
   def test_open
-    assert_instance_of DrbWebSocket::Client, DrbWebSocket::Protocol.open("ws://localhost:8080", {})
+    assert_instance_of DrbWebSocket::Socket, DrbWebSocket::Protocol.open("ws://localhost:8080", {})
   end
 
   def test_open_server

@@ -4,8 +4,8 @@ module DrbWebSocket
   # A protocol with WebSocket for drb.
   module Protocol
     class << self
-      def open(_uri, _config)
-        Client.new
+      def open(uri, config)
+        Socket.new(uri, nil, config)
       end
 
       def open_server(uri, config)
