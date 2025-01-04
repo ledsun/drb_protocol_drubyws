@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # DrbWebSocket provides a protocol with WebSocket to drb.
 
 module DrbWebSocket
