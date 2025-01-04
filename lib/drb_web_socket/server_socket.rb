@@ -11,6 +11,8 @@ module DrbWebSocket
 
     # Receive a request from the client and return a [object, message, args, block] tuple.
     def recv_request
+      # Ideally, this would be implemented as:
+      # @msg.recv_request(stream)
       [Object.new, :message, [], proc {}]
     end
   end
