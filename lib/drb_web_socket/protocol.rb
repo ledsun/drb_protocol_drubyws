@@ -8,8 +8,8 @@ module DrbWebSocket
         Client.new
       end
 
-      def open_server(_uri, _config)
-        Server.new
+      def open_server(uri, config)
+        Server.new(uri, nil, config)
       end
 
       def uri_option(uri, config)
