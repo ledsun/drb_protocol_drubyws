@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TestDrbWebSocketProtocol < Minitest::Test
   def test_open
     assert_instance_of DrbWebSocket::Client, DrbWebSocket::Protocol.open("ws://localhost:8080", {})

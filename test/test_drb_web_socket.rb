@@ -8,5 +8,4 @@ class TestDrbWebSocket < Minitest::Test
   end
 end
 
-require_relative 'test_drb_web_socket_protocol.rb'
-
+require_relative "test_drb_web_socket_protocol"
