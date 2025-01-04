@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-# DrbWebSocket provides a protocol with WebSocket to drb.
-
 module DrbWebSocket
+  # A protocol with WebSocket for drb.
   module Protocol
     class << self
       def open(_uri, _config)
