@@ -7,5 +7,3 @@ class TestDrbWebSocket < Minitest::Test
     refute_nil ::DrbWebSocket::VERSION
   end
 end
-
-require_relative "test_drb_web_socket_protocol"
