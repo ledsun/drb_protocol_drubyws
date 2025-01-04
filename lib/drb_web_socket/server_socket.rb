@@ -8,5 +8,10 @@ module DrbWebSocket
       @socket = socket
       @config = config
     end
+
+    # Receive a request from the client and return a [object, message, args, block] tuple.
+    def recv_request
+      [Object.new, :message, [], proc {}]
+    end
   end
 end
