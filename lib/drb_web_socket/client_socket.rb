@@ -2,7 +2,7 @@
 
 require "drb/drb"
 
-module DrbWebSocket
+module DRbWebSocket
   # A protocol instance from DrbWebSocket::Protocol.open.
   class ClientSocket
     def initialize(uri, socket, config = {})

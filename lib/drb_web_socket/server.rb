@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DrbWebSocket
+module DRbWebSocket
   # A protocol instance from DrbWebSocket::Protocol.open_server.
   class Server
     #  Get the URI for this server.

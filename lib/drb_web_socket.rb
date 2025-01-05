@@ -7,5 +7,5 @@ require_relative "drb_web_socket/server_socket"
 require_relative "drb_web_socket/server"
 
 # DrbWebSocket provides a protocol with WebSocket for the drb.
-module DrbWebSocket
+module DRbWebSocket
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DrbWebSocket
+module DRbWebSocket
   # A protocol instance from DrbWebSocket::Protocol.open.
   class ServerSocket
     def initialize(uri, socket, config = {})

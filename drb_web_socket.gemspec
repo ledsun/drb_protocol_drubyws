@@ -4,7 +4,7 @@ require_relative "lib/drb_web_socket/version"
 
 Gem::Specification.new do |spec|
   spec.name = "drb_web_socket"
-  spec.version = DrbWebSocket::VERSION
+  spec.version = DRbWebSocket::VERSION
   spec.authors = ["shigeru.nakajima"]
   spec.email = ["shigeru.nakajima@gmail.com"]
 

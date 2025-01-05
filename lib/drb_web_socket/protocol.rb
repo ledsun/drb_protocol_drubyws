@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DrbWebSocket
+module DRbWebSocket
   # A protocol with WebSocket for drb.
   module Protocol
     class << self
