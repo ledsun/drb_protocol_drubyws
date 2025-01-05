@@ -34,10 +34,6 @@ module DRbWebSocket
     def alive?
       return false unless @socket
 
-      if @socket.to_io.wait_readable(0)
-        close
-        return false
-      end
       true
     end
   end

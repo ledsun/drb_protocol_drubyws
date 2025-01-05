@@ -43,14 +43,8 @@ class TestConnectionToServer < Minitest::Test
   end
 
   def test_alive?
-    socket = Minitest::Mock.new
-    socket.expect(:to_io, socket)
-    socket.expect(:wait_readable, true, [0])
-    socket.expect(:close, nil)
-
-    conn2server = DRbWebSocket::ConnectionToServer.new("ws://localhost:8080", socket, {})
+    conn2server = DRbWebSocket::ConnectionToServer.new("ws://localhost:8080", nil, {})
 
     refute_predicate conn2server, :alive?
-    assert_nil conn2server.instance_variable_get(:@socket)
   end
 end
