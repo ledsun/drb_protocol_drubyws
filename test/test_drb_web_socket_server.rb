@@ -10,4 +10,20 @@ class TestDrbWebSocketServer < Minitest::Test
 
     assert_instance_of DrbWebSocket::ServerSocket, server.accept
   end
+
+  def test_close
+    socket = Minitest::Mock.new
+    socket.expect(:close, nil)
+
+    server = DrbWebSocket::Server.new("ws://localhost:8080", socket, {})
+    server.close
+
+    assert_nil server.instance_variable_get(:@socket)
+  end
+
+  def test_uri
+    server = DrbWebSocket::Server.new("ws://localhost:8080", nil, {})
+
+    assert_equal "ws://localhost:8080", server.uri
+  end
 end
