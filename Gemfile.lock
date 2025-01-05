@@ -7,6 +7,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.2)
+    drb (2.2.1)
     json (2.9.1)
     language_server-protocol (3.17.0.3)
     minitest (5.25.4)
@@ -45,6 +46,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  drb (~> 2.2)
   drb_web_socket!
   minitest (~> 5.16)
   rake (~> 13.0)

@@ -1,18 +1,40 @@
 # frozen_string_literal: true
 
+require "stringio"
+
 class TestDrbWebSocketServerSocket < Minitest::Test
   def test_initialize
     assert_instance_of DrbWebSocket::ServerSocket, DrbWebSocket::ServerSocket.new("ws://localhost:8080", nil, {})
   end
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def test_recv_request
-    socket = DrbWebSocket::ServerSocket.new("ws://localhost:8080", nil, {})
+    # Setup a DRb server
+    array = [1, 2, 3]
+    drb_server = DRb.start_service("druby://localhost:8787", array)
 
-    object, message, args, block = socket.recv_request
+    # Setup a ClientSocket
+    buffer = StringIO.new(+"", "r+")
+    client_socket = DrbWebSocket::ClientSocket.new("ws://localhost:8080", buffer, drb_server.config)
+    drb_object = DRbObject.new_with_uri(drb_server.uri)
+    client_socket.send_request(drb_object, :message, [123, "abc"], -> {})
 
-    assert_instance_of Object, object
-    assert_equal :message, message
-    assert_empty args
+    # Receive the request
+    buffer.rewind
+    server_socket = DrbWebSocket::ServerSocket.new("ws://localhost:8080", buffer, drb_server.config)
+    received_object, meg_id, args, block = server_socket.recv_request
+
+    assert_instance_of Array, received_object
+    assert_equal [1, 2, 3], received_object
+    assert_instance_of String, meg_id
+    assert_equal "message", meg_id
+    assert_equal [123, "abc"], args
     assert_instance_of Proc, block
+  ensure
+    buffer.close
+    drb_server&.stop_service
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 end

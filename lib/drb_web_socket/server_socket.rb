@@ -7,13 +7,13 @@ module DrbWebSocket
       @uri = uri
       @socket = socket
       @config = config
+      @msg = DRb::DRbMessage.new(config)
     end
 
     # Receive a request from the client and return a [object, message, args, block] tuple.
     def recv_request
       # Ideally, this would be implemented as:
-      # @msg.recv_request(stream)
-      [Object.new, :message, [], proc {}]
+      @msg.recv_request(@socket)
     end
   end
 end
