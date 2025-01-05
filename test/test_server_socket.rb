@@ -12,7 +12,7 @@ class TestServerSocket < Minitest::Test
   def test_recv_request
     # Setup a DRb server
     array = [1, 2, 3]
-    drb_server = DRb.start_service("druby://localhost:8787", array)
+    drb_server = DRb.start_service("druby://localhost:0", array)
 
     # Setup a ClientSocket
     buffer = StringIO.new(+"", "r+")
@@ -32,7 +32,7 @@ class TestServerSocket < Minitest::Test
     assert_equal [123, "abc"], args
     assert_instance_of Proc, block
   ensure
-    buffer.close
+    buffer&.close
     drb_server&.stop_service
   end
   # rubocop:enable Metrics/AbcSize

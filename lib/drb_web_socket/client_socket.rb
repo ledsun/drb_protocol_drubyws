@@ -16,5 +16,10 @@ module DRbWebSocket
     def send_request(ref, msg_id, arg, block)
       @msg.send_request(@socket, ref, msg_id, arg, block)
     end
+
+    # Receive a reply from the server and return it as a [success-boolean, reply-value] pair.
+    def recv_reply
+      @msg.recv_reply(@socket)
+    end
   end
 end

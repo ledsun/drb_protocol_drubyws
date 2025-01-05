@@ -12,8 +12,12 @@ module DRbWebSocket
 
     # Receive a request from the client and return a [object, message, args, block] tuple.
     def recv_request
-      # Ideally, this would be implemented as:
       @msg.recv_request(@socket)
+    end
+
+    #  Send a reply to the client.
+    def send_reply(succ, result)
+      @msg.send_reply(@socket, succ, result)
     end
   end
 end
