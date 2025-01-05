@@ -22,11 +22,23 @@ module DRbWebSocket
       @msg.recv_reply(@socket)
     end
 
+    # Close this connection.
     def close
       return unless @socket
 
       @socket.close
       @socket = nil
+    end
+
+    # Is this connection still alive?
+    def alive?
+      return false unless @socket
+
+      if @socket.to_io.wait_readable(0)
+        close
+        return false
+      end
+      true
     end
   end
 end

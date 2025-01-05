@@ -40,4 +40,16 @@ class TestClientSocket < Minitest::Test
 
     assert_nil client_socket.instance_variable_get(:@socket)
   end
+
+  def test_alive?
+    socket = Minitest::Mock.new
+    socket.expect(:to_io, socket)
+    socket.expect(:wait_readable, true, [0])
+    socket.expect(:close, nil)
+
+    client_socket = DRbWebSocket::ClientSocket.new("ws://localhost:8080", socket, {})
+
+    refute_predicate client_socket, :alive?
+    assert_nil client_socket.instance_variable_get(:@socket)
+  end
 end
