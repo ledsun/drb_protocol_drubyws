@@ -8,7 +8,7 @@ class TestServer < Minitest::Test
   def test_accept
     server = DRbWebSocket::Server.new("ws://localhost:8080", nil, {})
 
-    assert_instance_of DRbWebSocket::ServerSocket, server.accept
+    assert_instance_of DRbWebSocket::ConnectionToClient, server.accept
   end
 
   def test_close

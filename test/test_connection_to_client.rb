@@ -2,9 +2,10 @@
 
 require "stringio"
 
-class TestServerSocket < Minitest::Test
+class TestConnectionToClient < Minitest::Test
   def test_initialize
-    assert_instance_of DRbWebSocket::ServerSocket, DRbWebSocket::ServerSocket.new("ws://localhost:8080", nil, {})
+    assert_instance_of DRbWebSocket::ConnectionToClient,
+                       DRbWebSocket::ConnectionToClient.new("ws://localhost:8080", nil, {})
   end
 
   # rubocop:disable Metrics/AbcSize
@@ -16,14 +17,14 @@ class TestServerSocket < Minitest::Test
 
     # Setup a ClientSocket
     buffer = StringIO.new(+"", "r+")
-    client_socket = DRbWebSocket::ClientSocket.new("ws://localhost:8080", buffer, drb_server.config)
+    conn2server = DRbWebSocket::ConnectionToServer.new("ws://localhost:8080", buffer, drb_server.config)
     drb_object = DRbObject.new_with_uri(drb_server.uri)
-    client_socket.send_request(drb_object, :message, [123, "abc"], -> {})
+    conn2server.send_request(drb_object, :message, [123, "abc"], -> {})
 
     # Receive the request
     buffer.rewind
-    server_socket = DRbWebSocket::ServerSocket.new("ws://localhost:8080", buffer, drb_server.config)
-    received_object, meg_id, args, block = server_socket.recv_request
+    conn2client = DRbWebSocket::ConnectionToClient.new("ws://localhost:8080", buffer, drb_server.config)
+    received_object, meg_id, args, block = conn2client.recv_request
 
     assert_instance_of Array, received_object
     assert_equal [1, 2, 3], received_object

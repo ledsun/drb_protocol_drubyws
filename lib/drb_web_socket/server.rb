@@ -16,7 +16,7 @@ module DRbWebSocket
     # Returns a protocol instance capable of communicating with the client.
     def accept
       # TODO: Implement to wait for a new connection.
-      ServerSocket.new(@uri, @socket, @config)
+      ConnectionToClient.new(@uri, @socket, @config)
     end
 
     # Close the server connection.

@@ -5,7 +5,7 @@ module DRbWebSocket
   module Protocol
     class << self
       def open(uri, config)
-        ClientSocket.new(uri, nil, config)
+        ConnectionToServer.new(uri, nil, config)
       end
 
       def open_server(uri, config)

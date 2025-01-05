@@ -4,7 +4,7 @@ require "drb/drb"
 
 module DRbWebSocket
   # A protocol instance from DrbWebSocket::Protocol.open.
-  class ClientSocket
+  class ConnectionToServer
     def initialize(uri, socket, config = {})
       @uri = uri
       @socket = socket
