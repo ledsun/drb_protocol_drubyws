@@ -21,5 +21,12 @@ module DRbWebSocket
     def recv_reply
       @msg.recv_reply(@socket)
     end
+
+    def close
+      return unless @socket
+
+      @socket.close
+      @socket = nil
+    end
   end
 end
