@@ -38,4 +38,14 @@ class TestConnectionToClient < Minitest::Test
   end
   # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
+
+  def test_close
+    socket = Minitest::Mock.new
+    socket.expect(:close, nil)
+
+    conn2client = DRbWebSocket::ConnectionToClient.new("ws://localhost:8080", socket, {})
+    conn2client.close
+
+    assert_nil conn2client.instance_variable_get :@socket
+  end
 end

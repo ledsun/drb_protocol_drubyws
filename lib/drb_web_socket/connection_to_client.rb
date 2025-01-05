@@ -19,5 +19,13 @@ module DRbWebSocket
     def send_reply(succ, result)
       @msg.send_reply(@socket, succ, result)
     end
+
+    # Close this connection.
+    def close
+      return unless @socket
+
+      @socket.close
+      @socket = nil
+    end
   end
 end
