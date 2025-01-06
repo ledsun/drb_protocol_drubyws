@@ -6,7 +6,7 @@ class TestProtocol < Minitest::Test
   end
 
   def test_open_server
-    assert_instance_of DRbWebSocket::Server, DRbWebSocket::Protocol.open_server("ws://localhost:8080", {})
+    assert_instance_of DRbWebSocket::Server, DRbWebSocket::Protocol.open_server("drbws://localhost:8080", {})
   end
 
   def test_uri_option
