@@ -8,7 +8,6 @@ class TestConnectionToServer < Minitest::Test
                        DRbWebSocket::ConnectionToServer.new("ws://localhost:8080", nil, {})
   end
 
-  # rubocop:disable Metrics/MethodLength
   def test_recv_reply
     # Setup a DRb server
     array = [1, 2, 3]
@@ -30,7 +29,6 @@ class TestConnectionToServer < Minitest::Test
     buffer&.close
     drb_server&.stop_service
   end
-  # rubocop:enable Metrics/MethodLength
 
   def test_close
     socket = Minitest::Mock.new
