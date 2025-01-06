@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     drb_web_socket (0.1.0)
+      drb (~> 2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -46,7 +47,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  drb (~> 2.2)
   drb_web_socket!
   minitest (~> 5.16)
   rake (~> 13.0)
