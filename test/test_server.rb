@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class TestServer < Minitest::Test
+  DUMMY_SOCKET = IO.new(0)
+
   def test_initialize
-    assert_instance_of DRbWebSocket::Server, DRbWebSocket::Server.new("ws://localhost:8080", nil, {})
+    assert_instance_of DRbWebSocket::Server, DRbWebSocket::Server.new("ws://localhost:8080", DUMMY_SOCKET, {})
   end
 
   def test_accept
-    server = DRbWebSocket::Server.new("ws://localhost:8080", nil, {})
+    server = DRbWebSocket::Server.new("ws://localhost:8080", DUMMY_SOCKET, {})
 
     assert_instance_of DRbWebSocket::ConnectionToClient, server.accept
   end
@@ -14,6 +16,7 @@ class TestServer < Minitest::Test
   def test_close
     socket = Minitest::Mock.new
     socket.expect(:close, nil)
+    socket.expect(:to_io, socket)
 
     server = DRbWebSocket::Server.new("ws://localhost:8080", socket, {})
     server.close
@@ -22,7 +25,7 @@ class TestServer < Minitest::Test
   end
 
   def test_uri
-    server = DRbWebSocket::Server.new("ws://localhost:8080", nil, {})
+    server = DRbWebSocket::Server.new("ws://localhost:8080", DUMMY_SOCKET, {})
 
     assert_equal "ws://localhost:8080", server.uri
   end

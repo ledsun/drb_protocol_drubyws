@@ -7,6 +7,8 @@ module DRbWebSocket
     attr_reader :uri
 
     def initialize(uri, socket, config = {})
+      raise ArgumentError, "socket Must respond to :to_io" unless socket.respond_to?(:to_io)
+
       @uri = uri
       @socket = socket
       @config = config

@@ -9,7 +9,8 @@ module DRbWebSocket
       end
 
       def open_server(uri, config)
-        Server.new(uri, nil, config)
+        dummy_socket = IO.new(0)
+        Server.new(uri, dummy_socket, config)
       end
 
       def uri_option(uri, config)
