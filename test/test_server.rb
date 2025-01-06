@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class TestServer < Minitest::Test
-  DUMMY_SOCKET = IO.new(0)
+  DUMMY_SOCKET = Class.new do
+    def accept = self
+    def close; end
+    def to_io = self
+  end.new
 
   def test_initialize
     assert_instance_of DRbWebSocket::Server, DRbWebSocket::Server.new("ws://localhost:8080", DUMMY_SOCKET, {})

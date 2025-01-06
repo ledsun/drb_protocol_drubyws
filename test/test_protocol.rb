@@ -1,8 +1,26 @@
 # frozen_string_literal: true
 
+require "async"
+
 class TestProtocol < Minitest::Test
   def test_open
-    assert_instance_of DRbWebSocket::ConnectionToServer, DRbWebSocket::Protocol.open("ws://localhost:8080", {})
+    Async do |task|
+      uri = nil
+
+      task.async do
+        server = DRbWebSocket::Protocol.open_server("drbws://localhost:0", {})
+        uri = server.uri
+        server.accept
+      end
+
+      task.async do
+        connection = DRbWebSocket::Protocol.open(uri, {})
+
+        assert_instance_of DRbWebSocket::ConnectionToServer, connection
+      ensure
+        connection&.close
+      end
+    end
   end
 
   def test_open_server

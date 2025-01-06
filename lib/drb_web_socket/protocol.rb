@@ -8,12 +8,21 @@ module DRbWebSocket
   module Protocol
     class << self
       def open(uri, config)
-        ConnectionToServer.new(uri, nil, config)
+        host, port = parse_uri(uri)
+        socket = Wands::WebSocket.open(host, port)
+        ConnectionToServer.new(uri, socket, config)
       end
 
       def open_server(uri, config)
         host, port = parse_uri(uri)
         server = Wands::WebSocketServer.open(host, port)
+
+        if port.zero?
+          addr = server.addr
+          port = addr[1]
+        end
+        uri = "drbws://#{host}:#{port}"
+
         Server.new(uri, server, config)
       end
 
