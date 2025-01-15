@@ -7,5 +7,4 @@ require_relative "drb_web_socket/connection_to_client"
 require_relative "drb_web_socket/connection_to_server"
 
 # DrbWebSocket provides a protocol with WebSocket for the drb.
-module DRbWebSocket
-end
+DRb::DRbProtocol.add_protocol(DRbWebSocket::Protocol)

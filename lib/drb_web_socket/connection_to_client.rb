@@ -3,6 +3,9 @@
 module DRbWebSocket
   # A connection instance from DrbWebSocket::Server#accept.
   class ConnectionToClient
+    # DRb::DRbServer#main_loop calls `client.uri` method.
+    attr_reader :uri
+
     def initialize(uri, socket, config = {})
       @uri = uri
       @socket = socket
