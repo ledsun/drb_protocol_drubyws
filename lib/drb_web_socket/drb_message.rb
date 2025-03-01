@@ -1,4 +1,6 @@
-require 'drb/drb'
+# frozen_string_literal: true
+
+require "drb/drb"
 
 module DRbWebSocket
   # Send and receive messages for DRb over WebSocket.
@@ -12,8 +14,8 @@ module DRbWebSocket
         stream.write(dump(e))
       end
       stream.write(dump(b))
-    rescue
-      raise(DRbConnError, $!.message, $!.backtrace)
+    rescue StandardError
+      raise(DRbConnError, $ERROR_INFO.message, $ERROR_INFO.backtrace)
     end
 
     def recv_request(stream)
@@ -31,29 +33,28 @@ module DRbWebSocket
 
       block = load(stream)
 
-      return ro, msg, argv, block
+      [ro, msg, argv, block]
     end
 
     def send_reply(stream, succ, result)
       stream.write(dump(succ))
       stream.write(dump(result, !succ))
-    rescue
-      raise(DRbConnError, $!.message, $!.backtrace)
+    rescue StandardError
+      raise(DRbConnError, $ERROR_INFO.message, $ERROR_INFO.backtrace)
     end
 
     def load(soc)
       begin
         str = soc.gets
-      rescue
-        raise(DRb::DRbConnError, $!.message, $!.backtrace)
+      rescue StandardError
+        raise(DRb::DRbConnError, $ERROR_INFO.message, $ERROR_INFO.backtrace)
       end
-      raise(DRb::DRbConnError, 'connection closed') if str.nil?
+      raise(DRb::DRbConnError, "connection closed") if str.nil?
+
       DRb.mutex.synchronize do
-        begin
-          Marshal::load(str)
-        rescue NameError, ArgumentError
-          DRbUnknown.new($!, str)
-        end
+        Marshal.load(str)
+      rescue NameError, ArgumentError
+        DRbUnknown.new($ERROR_INFO, str)
       end
     end
 
