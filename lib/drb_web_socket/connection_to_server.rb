@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "drb/drb"
+require_relative "drb_message"
 
 module DRbWebSocket
   # A protocol instance from DrbWebSocket::Protocol.open.
@@ -9,7 +10,7 @@ module DRbWebSocket
       @uri = uri
       @socket = socket
       @config = config
-      @msg = DRb::DRbMessage.new(config)
+      @msg = DRbWebSocket::DRbMessage.new(config)
     end
 
     # Send a request to +ref+ with the given message id and arguments.
