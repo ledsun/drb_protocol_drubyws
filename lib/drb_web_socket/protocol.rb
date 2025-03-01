@@ -21,7 +21,7 @@ module DRbWebSocket
           addr = server.addr
           port = addr[1]
         end
-        uri = "drbws://#{host}:#{port}"
+        uri = "drubyws://#{host}:#{port}"
 
         Server.new(uri, server, config)
       end
@@ -34,7 +34,7 @@ module DRbWebSocket
 
       def parse_uri(uri)
         parsed_uri = URI.parse(uri)
-        raise(DRb::DRbBadScheme, uri) unless parsed_uri.scheme == "drbws"
+        raise(DRb::DRbBadScheme, uri) unless parsed_uri.scheme == "drubyws"
 
         [parsed_uri.host, parsed_uri.port]
       rescue URI::InvalidURIError

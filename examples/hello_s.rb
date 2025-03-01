@@ -7,5 +7,5 @@ class Foo
   def greeting = puts "Hello, world!"
 end
 
-DRb.start_service "drbws://localhost:12345", Foo.new
+DRb.start_service "drubyws://localhost:12345", Foo.new
 sleep

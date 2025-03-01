@@ -8,7 +8,7 @@ class TestProtocol < Minitest::Test
       uri = nil
 
       task.async do
-        server = DRbWebSocket::Protocol.open_server("drbws://localhost:0", {})
+        server = DRbWebSocket::Protocol.open_server("drubyws://localhost:0", {})
         uri = server.uri
         server.accept
       end
@@ -24,7 +24,7 @@ class TestProtocol < Minitest::Test
   end
 
   def test_open_server
-    assert_instance_of DRbWebSocket::Server, DRbWebSocket::Protocol.open_server("drbws://localhost:8080", {})
+    assert_instance_of DRbWebSocket::Server, DRbWebSocket::Protocol.open_server("drubyws://localhost:8080", {})
   end
 
   def test_uri_option
