@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require_relative "drb_message"
 
 module DRbWebSocket
   # A connection instance from DrbWebSocket::Server#accept.
@@ -11,7 +10,7 @@ module DRbWebSocket
       @uri = uri
       @socket = socket
       @config = config
-      @msg = DRbWebSocket::DRbMessage.new(config)
+      @msg = DRb::DRbMessage.new(config)
     end
 
     # Receive a request from the client and return a [object, message, args, block] tuple.

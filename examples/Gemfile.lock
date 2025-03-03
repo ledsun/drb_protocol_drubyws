@@ -3,7 +3,7 @@ PATH
   specs:
     drb_web_socket (0.1.0)
       drb (~> 2.2)
-      wands (~> 0.3)
+      wands (~> 0.6)
 
 GEM
   remote: https://rubygems.org/
@@ -12,7 +12,7 @@ GEM
     protocol-http (0.47.1)
     protocol-websocket (0.20.1)
       protocol-http (~> 0.2)
-    wands (0.3.0)
+    wands (0.6.0)
       protocol-websocket (~> 0.20)
       webrick (~> 1.9)
     webrick (1.9.1)
