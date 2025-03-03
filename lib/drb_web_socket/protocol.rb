@@ -26,8 +26,8 @@ module DRbWebSocket
         Server.new(uri, server, config)
       end
 
-      def uri_option(uri, config)
-        [uri, config]
+      def uri_option(uri, _config)
+        [uri, nil]
       end
 
       private
