@@ -28,6 +28,6 @@ class TestProtocol < Minitest::Test
   end
 
   def test_uri_option
-    assert_equal ["ws://localhost:8080", {}], DRbWebSocket::Protocol.uri_option("ws://localhost:8080", {})
+    assert_equal ["ws://localhost:8080", nil], DRbWebSocket::Protocol.uri_option("ws://localhost:8080", {})
   end
 end
