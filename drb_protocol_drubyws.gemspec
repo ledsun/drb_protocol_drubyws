@@ -3,21 +3,20 @@
 require_relative "lib/drb_web_socket/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "drb_web_socket"
+  spec.name = "drb_protocol_drubyws"
   spec.version = DRbWebSocket::VERSION
   spec.authors = ["shigeru.nakajima"]
   spec.email = ["shigeru.nakajima@gmail.com"]
+  spec.license = "MIT"
 
-  spec.summary = "TODO: Write a short summary, because RubyGems requires one."
-  spec.description = "TODO: Write a longer description or delete this line."
-  spec.homepage = "TODO: Put your gem's website or public repo URL here."
+  spec.summary = "A protocol with WebSocket for drb."
+  spec.description = "A transport protocol for dRuby that uses WebSocket. It enables connections from a browser to a dRuby server."
+  spec.homepage = "https://github.com/ledsun/drb_web_socket"
   spec.required_ruby_version = ">= 3.1.0"
 
-  spec.metadata["allowed_push_host"] = "TODO: Set to your gem server 'https://example.com'"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
-  spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
