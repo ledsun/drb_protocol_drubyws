@@ -1,28 +1,45 @@
 # Drb Protocol drubyws
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/drb_web_socket`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem provides a WebSocket transport for the DRb protocol.
+Scheme `drubyws://` is used to specify the WebSocket transport.
 
 ## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
 
 Install the gem and add to the application's Gemfile by executing:
 
 ```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle add drb_protocol_drubyws
 ```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+gem install drb_protocol_drubyws
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+Server example:
+
+```ruby
+require "drb_web_socket"
+
+class Foo
+  def greeting = puts "Hello, world!"
+end
+
+DRb.start_service "drubyws://localhost:12345", Foo.new
+sleep
+```
+
+Client example:
+
+```ruby
+require "drb_web_socket"
+
+foo = DRbObject.new_with_uri("drubyws://localhost:12345")
+foo.greeting
+```
 
 ## Development
 
