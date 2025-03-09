@@ -16,5 +16,3 @@ gem "rubocop-rake", "~> 0.7.0"
 gem "rubocop-minitest", "~> 0.37.0"
 
 gem "async", "~> 2.21"
-
-gem "rubocop-rspec", "~> 3.5"
