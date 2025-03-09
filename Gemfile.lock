@@ -80,7 +80,7 @@ DEPENDENCIES
   drb_protocol_drubyws!
   minitest (~> 5.16)
   rake (~> 13.0)
-  rubocop (~> 1.21)
+  rubocop (~> 1.73)
   rubocop-minitest (~> 0.37.0)
   rubocop-rake (~> 0.7.0)
 
