@@ -5,6 +5,8 @@ require:
 AllCops:
   TargetRubyVersion: 3.1
   NewCops: enable
+  Exclude:
+    - 'drb_protocol_drubyws.gemspec'
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
