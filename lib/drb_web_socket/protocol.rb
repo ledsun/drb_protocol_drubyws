@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "wands/web_socket"
-require "wands/web_socket_server" unless defined?(JS) # 
+require "wands/web_socket_server" unless defined?(JS)
 require "uri"
 
 module DRbWebSocket

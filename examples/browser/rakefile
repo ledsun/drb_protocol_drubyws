@@ -2,7 +2,8 @@ require "rake"
 
 desc "Build ruby.wasm"
 task :build do
-  sh "bundle exec rbwasm build --ruby-version 3.4 -o ruby+gems.wasm"
+  sh "bundle exec rbwasm build --ruby-version 3.4 -o ruby+drb_protocol_drubyws.wasm"
+  sh "bundle exec rbwasm pack ruby+drb_protocol_drubyws.wasm --dir dummy_libs::lib --output ruby+gems.wasm"
 end
 
 namespace :server do
