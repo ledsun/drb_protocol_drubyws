@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+gem "drb_protocol_drubyws", path: "../../"
+
+gem "ruby_wasm", "~> 2.7"
+gem "js", "~> 2.7"
+
+gem "rake", "~> 13.2"

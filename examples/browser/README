@@ -1,0 +1,23 @@
+
+
+# Setup
+
+```
+bundle init
+bundle exec rake build
+```
+
+
+# Server
+
+```
+bundle exec rake server:web_socket
+```
+
+
+# Client
+
+```
+bundle exec rake serevr:http
+open index.html
+```
