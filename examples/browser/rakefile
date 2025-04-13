@@ -1,21 +1,18 @@
 require "rake"
 
-BUNDLE_EXEC = "bundle exec"
-RUBY_VERSION = "3.4"
-
 desc "Build ruby.wasm"
 task :build do
-  sh [BUNDLE_EXEC, "rbwasm", "build", "--ruby-version", RUBY_VERSION, "-o", "ruby+gems.wasm"]
+  sh "bundle exec rbwasm build --ruby-version 3.4 -o ruby+gems.wasm"
 end
 
 namespace :server do
   desc "Run the WebSocket server"
   task :web_socket do
-    sh [BUNDLE_EXEC, "ruby", "./hello_s.rb"]
+    sh "bundle exec ruby ./hello_s.rb"
   end
 
   desc "Run the Http server"
   task :http do
-    sh ["ruby", "-run", "-e", "httpd", ".", "-p", "8000"]
+    sh "ruby -run -e httpd . -p 8000"
   end
 end
