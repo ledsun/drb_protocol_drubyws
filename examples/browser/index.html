@@ -3,7 +3,7 @@
 <body>
 <script type="module" src="load_ruby_script.js"></script>
 <script type="text/ruby" data-eval="async">
-  require "drb_web_socket/client"
+  require "drb_web_socket"
 
   foo = DRbObject.new_with_uri("drubyws://localhost:12345")
   foo.greeting
