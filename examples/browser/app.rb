@@ -4,7 +4,9 @@ $LOAD_PATH.unshift File.expand_path("lib", __dir__)
 require "drb_web_socket"
 
 module DRb
+  # Patch DRb::DRbConn to use a HashStore for the connection pool
   class DRbConn
+    # This is a simple HashStore that uses a hash to store the keys.
     class HashStore
       def initialize
         @pool = {}
