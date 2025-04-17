@@ -8,6 +8,8 @@ AllCops:
   Exclude:
     - 'drb_protocol_drubyws.gemspec'
     - 'vendor/**/*'
+    - 'examples/browser/build/**/*'
+    - 'examples/browser/rubies/**/*'
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
